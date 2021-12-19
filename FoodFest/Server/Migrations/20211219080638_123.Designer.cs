@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FoodFest.Server.Data.Migrations
+namespace FoodFest.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211218201336_AddedDefaultDataAndUser2")]
-    partial class AddedDefaultDataAndUser2
+    [Migration("20211219080638_123")]
+    partial class _123
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -254,35 +254,35 @@ namespace FoodFest.Server.Data.Migrations
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = 1,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 4, 13, 35, 725, DateTimeKind.Local).AddTicks(2082)
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 865, DateTimeKind.Local).AddTicks(5213)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = 2,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 4, 13, 35, 726, DateTimeKind.Local).AddTicks(4359)
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7166)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = 3,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 4, 13, 35, 726, DateTimeKind.Local).AddTicks(4385)
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7189)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = 4,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 4, 13, 35, 726, DateTimeKind.Local).AddTicks(4388)
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7193)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = 5,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 4, 13, 35, 726, DateTimeKind.Local).AddTicks(4389)
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7194)
                         });
                 });
 

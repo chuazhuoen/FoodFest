@@ -4,16 +4,14 @@ using FoodFest.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace FoodFest.Server.Data.Migrations
+namespace FoodFest.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211218190130_AddApplicationTables")]
-    partial class AddApplicationTables
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,6 +117,40 @@ namespace FoodFest.Server.Data.Migrations
                     b.HasIndex("RestaurantID");
 
                     b.ToTable("Cuisines");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Appetiser = "Peanuts",
+                            Dessert = "Watermelon",
+                            MainCourse = "Fried Rice",
+                            Name = "Chinese"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Appetiser = "Tteokbokki",
+                            Dessert = "Bingsu",
+                            MainCourse = "Kimchi Fried Rice",
+                            Name = "Korean"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Appetiser = "Sushi",
+                            Dessert = "Mochi",
+                            MainCourse = "Japanese Curry Udon",
+                            Name = "Japanese"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Appetiser = "Shepherd's Pie",
+                            Dessert = "Sundae",
+                            MainCourse = "Fish and Chips",
+                            Name = "Western"
+                        });
                 });
 
             modelBuilder.Entity("FoodFest.Shared.Domain.Customer", b =>
@@ -213,6 +245,43 @@ namespace FoodFest.Server.Data.Migrations
                     b.HasIndex("RestaurantID");
 
                     b.ToTable("Reservations");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            People = 1,
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 865, DateTimeKind.Local).AddTicks(5213)
+                        },
+                        new
+                        {
+                            ID = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            People = 2,
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7166)
+                        },
+                        new
+                        {
+                            ID = 3,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            People = 3,
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7189)
+                        },
+                        new
+                        {
+                            ID = 4,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            People = 4,
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7193)
+                        },
+                        new
+                        {
+                            ID = 5,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            People = 5,
+                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7194)
+                        });
                 });
 
             modelBuilder.Entity("FoodFest.Shared.Domain.Restaurant", b =>
@@ -262,6 +331,38 @@ namespace FoodFest.Server.Data.Migrations
                     b.HasIndex("RestaurantID");
 
                     b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Description = "Excellent food, excellent customer service!",
+                            Ratings = 5
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Description = "Good food, good customer service!",
+                            Ratings = 4
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Description = "Not bad! Can improve!",
+                            Ratings = 3
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Description = "Food and customer service is not very good. ",
+                            Ratings = 2
+                        },
+                        new
+                        {
+                            ID = 5,
+                            Description = "Never coming back again!!!!",
+                            Ratings = 1
+                        });
                 });
 
             modelBuilder.Entity("FoodFest.Shared.Domain.TwoPeopleReservation", b =>

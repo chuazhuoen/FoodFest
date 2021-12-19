@@ -1,7 +1,62 @@
 ﻿@page "/"
+@using FoodFest.Client.Components
 
 <h1>Good People, Good Food, Good Time</h1>
 
 Have a seat - the FoodFest way!
+<br />
+<MainPageContentComponent />
+<br />
+<head>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<table>
+    <thead>
+        <tr>
+            <th>Restaurant Picture</th>
+            <th>Restaurant Name</th>
+            <th>Cuisine</th>
+            <th>Location</th>
+            <th>Review Score</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><a><img src="/images/chinese.jfif"></a></td>
+            <td>JiaHe Chinese Restaurant</td>
+            <td>Chinese</td>
+            <td>1 Farrer Park Station Rd, #01-14/15/16 One Farrer Hotel Connexion, Singapore 217562</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><a><img src="/images/korean.jfif"></a></td>
+            <td>Seoul Garden NEX</td>
+            <td>Korean</td>
+            <td>23 Serangoon Central, #B1-34/35 NEX, Singapore 556083</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><a><img src="/images/japanese.jfif"></a></td>
+            <td>Ichiban Sushi(Hougang Mall)</td>
+            <td>Japanese</td>
+            <td> 90 Hougang Avenue 10 #02-23, Hougang Mall, 538766</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><a><img src="/images/western.jfif"></a></td>
+            <td>The Ranch Cafe</td>
+            <td>Western</td>
+            <td>71 / 73 Lor 27 Geylang, Singapore 388191</td>
+            <td>4</td>
+        </tr>
 
+    </tbody>
+</table>
+@code {
+
+}
 

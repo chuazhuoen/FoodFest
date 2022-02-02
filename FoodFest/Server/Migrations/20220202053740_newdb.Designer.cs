@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodFest.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211219080638_123")]
-    partial class _123
+    [Migration("20220202053740_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,20 +231,20 @@ namespace FoodFest.Server.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("People")
-                        .HasColumnType("int");
+                    b.Property<string>("People")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReserveDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("RestaurantID")
+                    b.Property<int?>("RestaurantId")
                         .HasColumnType("int");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("RestaurantID");
+                    b.HasIndex("RestaurantId");
 
                     b.ToTable("Reservations");
 
@@ -253,36 +253,36 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = 1,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 865, DateTimeKind.Local).AddTicks(5213)
+                            People = "1",
+                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 381, DateTimeKind.Local).AddTicks(3362)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = 2,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7166)
+                            People = "2",
+                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2152)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = 3,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7189)
+                            People = "3",
+                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2164)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = 4,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7193)
+                            People = "4",
+                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2166)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = 5,
-                            ReserveDateTime = new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7194)
+                            People = "5",
+                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2167)
                         });
                 });
 
@@ -320,8 +320,8 @@ namespace FoodFest.Server.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Ratings")
-                        .HasColumnType("int");
+                    b.Property<string>("Ratings")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RestaurantID")
                         .HasColumnType("int");
@@ -339,31 +339,31 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 1,
                             Description = "Excellent food, excellent customer service!",
-                            Ratings = 5
+                            Ratings = "5"
                         },
                         new
                         {
                             ID = 2,
                             Description = "Good food, good customer service!",
-                            Ratings = 4
+                            Ratings = "4"
                         },
                         new
                         {
                             ID = 3,
                             Description = "Not bad! Can improve!",
-                            Ratings = 3
+                            Ratings = "3"
                         },
                         new
                         {
                             ID = 4,
                             Description = "Food and customer service is not very good. ",
-                            Ratings = 2
+                            Ratings = "2"
                         },
                         new
                         {
                             ID = 5,
                             Description = "Never coming back again!!!!",
-                            Ratings = 1
+                            Ratings = "1"
                         });
                 });
 
@@ -688,7 +688,7 @@ namespace FoodFest.Server.Migrations
 
                     b.HasOne("FoodFest.Shared.Domain.Restaurant", "Restaurant")
                         .WithMany()
-                        .HasForeignKey("RestaurantID");
+                        .HasForeignKey("RestaurantId");
 
                     b.Navigation("Customer");
 

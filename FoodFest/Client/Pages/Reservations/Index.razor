@@ -6,16 +6,22 @@
 <h3 class="card-title">Food Reservations</h3>
 <br />
 
+<a href="/reservations/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Reservation
+</a>
+<br />
+<br />
+
 @if (Reservations == null)
- {
+{
     <div class="alert alert-info">Loading Reservations...</div>
- }
+}
 else
 {
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Number of People</th>
                 <th>Date and Time</th>
                 <th>Actions</th>
@@ -24,22 +30,21 @@ else
         <tbody>
             @foreach (var reservation in Reservations)
             {
-            <tr>
-                <td>@reservation.ID</td>
-                <td>@reservation.People</td>
-                <td>@reservation.ReserveDateTime.Date.ToString("dd MMMM yyyy")</td>
-                <td>
-                    <a href="/reservations/view/@reservation.ID" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/reservations/view/@reservation.ID" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(reservation.ID))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@reservation.People</td>
+                    <td>@reservation.ReserveDateTime.Date.ToString("dd MMMM yyyy")</td>
+                    <td>
+                        <a href="/reservations/view/@reservation.ID" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/reservations/view/@reservation.ID" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(reservation.ID))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

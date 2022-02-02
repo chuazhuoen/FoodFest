@@ -6,6 +6,13 @@
 <h3 class="card-title">Food Restaurants</h3>
 <br />
 
+<a href="/review/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Reservation
+</a>
+<br />
+<br />
+
 @if (Restaurants == null)
 {
     <div class="alert alert-info">Loading Restaurants...</div>
@@ -25,23 +32,23 @@ else
         <tbody>
             @foreach (var restaurant in Restaurants)
             {
-            <tr>
-                <td>@restaurant.ID</td>
-                <td>@restaurant.Name</td>
-                <td>@restaurant.Number</td>
-                <td>@restaurant.Address</td>
-                <td>
-                    <a href="/restaurants/view/@restaurant.ID" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/restaurants/view/@restaurant.ID" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(restaurant.ID))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@restaurant.ID</td>
+                    <td>@restaurant.Name</td>
+                    <td>@restaurant.Number</td>
+                    <td>@restaurant.Address</td>
+                    <td>
+                        <a href="/restaurants/view/@restaurant.ID" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/restaurants/view/@restaurant.ID" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(restaurant.ID))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

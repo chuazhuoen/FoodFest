@@ -9,9 +9,10 @@ namespace FoodFest.Shared.Domain
     public class Reservation
     {
         public int ID { get; set; }
-        public int People { get; set; }
+        public string People { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime ReserveDateTime { get; set; }
+        public int? RestaurantId { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Restaurant Restaurant{ get; set; }
     }

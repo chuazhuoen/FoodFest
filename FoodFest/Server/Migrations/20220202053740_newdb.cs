@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodFest.Server.Migrations
 {
-    public partial class _123 : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -272,11 +272,11 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    People = table.Column<int>(type: "int", nullable: false),
+                    People = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReserveDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CustomerID = table.Column<int>(type: "int", nullable: true),
-                    RestaurantID = table.Column<int>(type: "int", nullable: true)
+                    RestaurantId = table.Column<int>(type: "int", nullable: true),
+                    CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -288,8 +288,8 @@ namespace FoodFest.Server.Migrations
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reservations_Restaurants_RestaurantID",
-                        column: x => x.RestaurantID,
+                        name: "FK_Reservations_Restaurants_RestaurantId",
+                        column: x => x.RestaurantId,
                         principalTable: "Restaurants",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Restrict);
@@ -301,7 +301,7 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ratings = table.Column<int>(type: "int", nullable: false),
+                    Ratings = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RestaurantID = table.Column<int>(type: "int", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
@@ -408,14 +408,14 @@ namespace FoodFest.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reservations",
-                columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantID" },
+                columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2021, 12, 19, 16, 6, 37, 865, DateTimeKind.Local).AddTicks(5213), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7166), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7189), null },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7193), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, new DateTime(2021, 12, 19, 16, 6, 37, 866, DateTimeKind.Local).AddTicks(7194), null }
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 2, 13, 37, 40, 381, DateTimeKind.Local).AddTicks(3362), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2152), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2164), null },
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2166), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2167), null }
                 });
 
             migrationBuilder.InsertData(
@@ -423,11 +423,11 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestaurantID" },
                 values: new object[,]
                 {
-                    { 1, null, "Excellent food, excellent customer service!", 5, null },
-                    { 2, null, "Good food, good customer service!", 4, null },
-                    { 3, null, "Not bad! Can improve!", 3, null },
-                    { 4, null, "Food and customer service is not very good. ", 2, null },
-                    { 5, null, "Never coming back again!!!!", 1, null }
+                    { 1, null, "Excellent food, excellent customer service!", "5", null },
+                    { 2, null, "Good food, good customer service!", "4", null },
+                    { 3, null, "Not bad! Can improve!", "3", null },
+                    { 4, null, "Food and customer service is not very good. ", "2", null },
+                    { 5, null, "Never coming back again!!!!", "1", null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -521,9 +521,9 @@ namespace FoodFest.Server.Migrations
                 column: "CustomerID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservations_RestaurantID",
+                name: "IX_Reservations_RestaurantId",
                 table: "Reservations",
-                column: "RestaurantID");
+                column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_CustomerID",

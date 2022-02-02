@@ -6,6 +6,13 @@
 <h3 class="card-title">Food Reviews</h3>
 <br />
 
+<a href="/review/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Review
+</a>
+<br />
+<br />
+
 @if (Reviews == null)
 {
     <div class="alert alert-info">Loading Reviews...</div>
@@ -15,7 +22,6 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Ratings</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -25,7 +31,6 @@ else
             @foreach (var review in Reviews)
             {
                 <tr>
-                    <td>@review.ID</td>
                     <td>@review.Ratings</td>
                     <td>@review.Description</td>
                     <td>

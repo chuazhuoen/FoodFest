@@ -15,30 +15,30 @@ namespace FoodFest.Server.Configurations.Entities
                 new Reservation
                 {
                     ID = 1,
-                    People = 1,
+                    People = "1",
                     ReserveDateTime = DateTime.Now
                 },
                 new Reservation
                 {
                     ID = 2,
-                    People = 2,
+                    People = "2",
                     ReserveDateTime = DateTime.Now
                 },
                 new Reservation
                 {
                     ID = 3,
-                    People = 3,
+                    People = "3",
                     ReserveDateTime = DateTime.Now
                 }, 
                 new Reservation
                 {
                     ID = 4,
-                    People = 4,
+                    People = "4",
                     ReserveDateTime = DateTime.Now
                 }, new Reservation
                 {
                     ID = 5,
-                    People = 5,
+                    People = "5",
                     ReserveDateTime = DateTime.Now
                 });
         }

@@ -36,6 +36,7 @@ namespace FoodFest.Server.Data
             builder.ApplyConfiguration(new CuisineSeedConfiguration());
             builder.ApplyConfiguration(new ReviewSeedConfiguration());
             builder.ApplyConfiguration(new ReservationSeedConfiguration());
+            builder.ApplyConfiguration(new RestaurantSeedConfiguration());
         }
     }
 }

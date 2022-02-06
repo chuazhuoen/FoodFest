@@ -14,5 +14,6 @@ namespace FoodFest.Shared.Domain
         public string MainCourse { get; set; }
         public string Dessert { get; set; }
         public virtual Restaurant Restaurant { get; set; }
+
     }
 }

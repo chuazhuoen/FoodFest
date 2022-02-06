@@ -252,35 +252,35 @@ namespace FoodFest.Server.Migrations
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "1",
-                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 381, DateTimeKind.Local).AddTicks(3362)
+                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 273, DateTimeKind.Local).AddTicks(6195)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "2",
-                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2152)
+                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3813)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "3",
-                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2164)
+                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3826)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "4",
-                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2166)
+                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3828)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "5",
-                            ReserveDateTime = new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2167)
+                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3829)
                         });
                 });
 
@@ -297,8 +297,8 @@ namespace FoodFest.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Number")
-                        .HasColumnType("int");
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 

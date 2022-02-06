@@ -109,7 +109,7 @@ namespace FoodFest.Server.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Number = table.Column<int>(type: "int", nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -411,11 +411,11 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 2, 13, 37, 40, 381, DateTimeKind.Local).AddTicks(3362), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2152), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2164), null },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2166), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 2, 13, 37, 40, 382, DateTimeKind.Local).AddTicks(2167), null }
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 5, 1, 47, 11, 273, DateTimeKind.Local).AddTicks(6195), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3813), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3826), null },
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3828), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3829), null }
                 });
 
             migrationBuilder.InsertData(

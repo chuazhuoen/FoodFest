@@ -16,32 +16,37 @@ namespace FoodFest.Server.Configurations.Entities
                 {
                     ID = 1,
                     Ratings =  "5", 
-                    Description = "Excellent food, excellent customer service!"
+                    Description = "Excellent food, excellent customer service!",
+                    RestName = "esther"
                 },
                 new Review
                 {
                     ID = 2,
                     Ratings = "4",
-                    Description = "Good food, good customer service!"
+                    Description = "Good food, good customer service!",
+                    RestName = "esther"
                 },
                 new Review
                 {
                     ID = 3,
                     Ratings = "3",
-                    Description = "Not bad! Can improve!"
+                    Description = "Not bad! Can improve!",
+                    RestName = "esther"
                 },
                 new Review
                  {
                      ID = 4,
                      Ratings = "2",
-                     Description = "Food and customer service is not very good. "
-                 },
+                     Description = "Food and customer service is not very good. ",
+                     RestName = "esther"
+                },
                 new Review
                   {
                       ID = 5,
                       Ratings = "1",
-                      Description = "Never coming back again!!!!"
-                  });
+                      Description = "Never coming back again!!!!",
+                      RestName = "esther"
+                });
 
                     ;
         }

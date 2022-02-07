@@ -225,6 +225,10 @@ namespace FoodFest.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("People")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReserveDateTime")
@@ -247,35 +251,40 @@ namespace FoodFest.Server.Migrations
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "1",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 718, DateTimeKind.Local).AddTicks(4054)
+                            RName = "esther",
+                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 582, DateTimeKind.Local).AddTicks(8011)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "2",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9696)
+                            RName = "esther",
+                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(525)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "3",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9725)
+                            RName = "esther",
+                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(547)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "4",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9728)
+                            RName = "esther",
+                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(550)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "5",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9730)
+                            RName = "esther",
+                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(552)
                         });
                 });
 
@@ -326,6 +335,14 @@ namespace FoodFest.Server.Migrations
                             Name = "Ichiban Sushi (Hougang Mall)",
                             Number = "6386 7836",
                             PriceRange = "$$$$"
+                        },
+                        new
+                        {
+                            ID = 4,
+                            Address = "71 / 73 Lor 27 Geylang, Singapore 388191",
+                            Name = "The Ranch Cafe",
+                            Number = "6747 0788",
+                            PriceRange = "$$"
                         });
                 });
 
@@ -340,13 +357,20 @@ namespace FoodFest.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Ratings")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)");
 
                     b.Property<int>("RestId")
                         .HasColumnType("int");
+
+                    b.Property<string>("RestName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RestaurantID")
                         .HasColumnType("int");
@@ -365,35 +389,40 @@ namespace FoodFest.Server.Migrations
                             ID = 1,
                             Description = "Excellent food, excellent customer service!",
                             Ratings = "5",
-                            RestId = 0
+                            RestId = 0,
+                            RestName = "esther"
                         },
                         new
                         {
                             ID = 2,
                             Description = "Good food, good customer service!",
                             Ratings = "4",
-                            RestId = 0
+                            RestId = 0,
+                            RestName = "esther"
                         },
                         new
                         {
                             ID = 3,
                             Description = "Not bad! Can improve!",
                             Ratings = "3",
-                            RestId = 0
+                            RestId = 0,
+                            RestName = "esther"
                         },
                         new
                         {
                             ID = 4,
                             Description = "Food and customer service is not very good. ",
                             Ratings = "2",
-                            RestId = 0
+                            RestId = 0,
+                            RestName = "esther"
                         },
                         new
                         {
                             ID = 5,
                             Description = "Never coming back again!!!!",
                             Ratings = "1",
-                            RestId = 0
+                            RestId = 0,
+                            RestName = "esther"
                         });
                 });
 

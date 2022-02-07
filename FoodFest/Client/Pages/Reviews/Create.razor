@@ -6,43 +6,7 @@
 <hr />
 <br />
 
-<EditForm Model="@review" OnValidSubmit="CreateReview">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="form-group">
-        <label>Restaurant:</label>
-        <div>
-            <InputSelect @bind-Value="review.RestId" class="form-control">
-                <option value="">--Select Restaurant--</option>
-                @if (Restaurants != null)
-                 {
-                    foreach (var restaurant in Restaurants)
-                        {
-                            <option value="@restaurant.ID">@restaurant.Name</option>
-                        }
-                 }
-            </InputSelect>
-            <ValidationMessage For="@(() => review.RestId)"/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Ratings: </label>
-        <div>
-            <InputText @bind-Value="@review.Ratings" class="form-control" />
-            <ValidationMessage For="@(() => review.Ratings)" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Descriptions: </label>
-        <div>
-            <InputText @bind-Value="@review.Description" class="form-control" />
-            <ValidationMessage For="@(() => review.Description)" />
-        </div>
-    </div>
-    <button type="submit" class="btn btn-success btn-block">
-        Create Review
-    </button>
-</EditForm>
+<FormComponent ButtonText="Create Review" review="review" OnValidSubmit="@CreateReview"/>
 
 @code {
     Review review = new Review();

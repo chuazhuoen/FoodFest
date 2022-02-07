@@ -22,6 +22,7 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Restaurant</th>
                 <th>Number of People</th>
                 <th>Date and Time</th>
                 <th>Actions</th>
@@ -31,6 +32,7 @@ else
             @foreach (var reservation in Reservations)
             {
                 <tr>
+                    <td>@reservation.RName</td>
                     <td>@reservation.People</td>
                     <td>@reservation.ReserveDateTime.Date.ToString("dd MMMM yyyy")</td>
                     <td>

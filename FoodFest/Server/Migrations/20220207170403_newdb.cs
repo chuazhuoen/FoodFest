@@ -266,10 +266,11 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    People = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    People = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReserveDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: true),
+                    RName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -295,9 +296,10 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ratings = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Ratings = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     RestId = table.Column<int>(type: "int", nullable: false),
+                    RestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RestaurantID = table.Column<int>(type: "int", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -403,14 +405,14 @@ namespace FoodFest.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reservations",
-                columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantId" },
+                columns: new[] { "ID", "CustomerID", "DateCreated", "People", "RName", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9728), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9725), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9730), null },
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 7, 23, 23, 47, 718, DateTimeKind.Local).AddTicks(4054), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9696), null }
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(550), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(547), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(552), null },
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 582, DateTimeKind.Local).AddTicks(8011), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(525), null }
                 });
 
             migrationBuilder.InsertData(
@@ -420,19 +422,20 @@ namespace FoodFest.Server.Migrations
                 {
                     { 1, "1 Farrer Park Station Rd, #01-14/15/16 One Farrer Hotel Connexion, Singapore 217562", "JiaHe Chinese Restaurant", "6694 8988", "$$$" },
                     { 2, "23 Serangoon Central, #B1-34/35 NEX, Singapore 556083", "Seoul Garden Nex", "6555 1339", "$$$$" },
-                    { 3, "90 Hougang Avenue 10 #02-23, Hougang Mall, 538766", "Ichiban Sushi (Hougang Mall)", "6386 7836", "$$$$" }
+                    { 3, "90 Hougang Avenue 10 #02-23, Hougang Mall, 538766", "Ichiban Sushi (Hougang Mall)", "6386 7836", "$$$$" },
+                    { 4, "71 / 73 Lor 27 Geylang, Singapore 388191", "The Ranch Cafe", "6747 0788", "$$" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestId", "RestaurantID" },
+                columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestId", "RestName", "RestaurantID" },
                 values: new object[,]
                 {
-                    { 4, null, "Food and customer service is not very good. ", "2", 0, null },
-                    { 1, null, "Excellent food, excellent customer service!", "5", 0, null },
-                    { 2, null, "Good food, good customer service!", "4", 0, null },
-                    { 3, null, "Not bad! Can improve!", "3", 0, null },
-                    { 5, null, "Never coming back again!!!!", "1", 0, null }
+                    { 4, null, "Food and customer service is not very good. ", "2", 0, "esther", null },
+                    { 1, null, "Excellent food, excellent customer service!", "5", 0, "esther", null },
+                    { 2, null, "Good food, good customer service!", "4", 0, "esther", null },
+                    { 3, null, "Not bad! Can improve!", "3", 0, "esther", null },
+                    { 5, null, "Never coming back again!!!!", "1", 0, "esther", null }
                 });
 
             migrationBuilder.CreateIndex(

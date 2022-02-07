@@ -6,27 +6,7 @@
 <hr />
 <br />
 
-<EditForm Model="@reservation" OnValidSubmit="CreateReservation">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
-    <div class="form-group">
-        <label>Number of People: </label>
-        <div>
-            <InputText @bind-Value="@reservation.People" class="form-control" />
-            <ValidationMessage For="@(() => reservation.People)" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>Date: </label>
-        <div>
-            <InputDate @bind-Value="@reservation.ReserveDateTime" class="form-control" />
-            <ValidationMessage For="@(() => reservation.ReserveDateTime)" />
-        </div>
-    </div>
-    <button type="submit" class="btn btn-success btn-block">
-        Create Review
-    </button>
-</EditForm>
+<FormComponent ButtonText="Create Reservation" Reservation="reservation" OnValidSubmit="@CreateReservation" />
 
 @code {
     Reservation reservation = new Reservation();

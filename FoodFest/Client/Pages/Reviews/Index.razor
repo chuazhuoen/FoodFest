@@ -32,7 +32,7 @@ else
             @foreach (var review in Reviews)
             {
                 <tr>
-
+                    <td>@review.RestName</td>
                     <td>@review.Ratings</td>
                     <td>@review.Description</td>
                     <td>
@@ -54,12 +54,12 @@ else
 
 @code {
     private List<Review> Reviews;
-    private List<Restaurant> Restaurants;
+
 
     protected async override Task OnInitializedAsync()
     {
         Reviews = await _client.GetFromJsonAsync<List<Review>>($"{Endpoints.ReviewsEndpoint}");
-        Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
+
     }
 
     async Task Delete(int reviewId)

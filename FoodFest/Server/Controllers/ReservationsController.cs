@@ -31,7 +31,7 @@ namespace Foodfest.Server.Controllers
         public async Task<IActionResult> GetReservations()
         {
             //return await _context.Makes.ToListAsync();
-            var reservations = await _unitOfWork.Reservations.GetAll(includes: q => q.Include(x => x.Restaurant).Include(x => x.Customer));
+            var reservations = await _unitOfWork.Reservations.GetAll(includes: q => q.Include(x => x.Restaurant));
             return Ok(reservations);
         }
 

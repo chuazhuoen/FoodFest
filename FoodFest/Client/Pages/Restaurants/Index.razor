@@ -2,6 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@implements IDisposable
 
 <h3 class="card-title">Food Restaurants</h3>
 <br />
@@ -13,7 +14,7 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="restaurantsTable">
         <thead>
             <tr>
                 <th>Name</th>
@@ -26,12 +27,12 @@ else
         <tbody>
             @foreach (var restaurant in Restaurants)
             {
-            <tr>
-                <td>@restaurant.Name</td>
-                <td>@restaurant.Number</td>
-                <td>@restaurant.Address</td>
-                <td>@restaurant.PriceRange</td>
-            </tr>
+                <tr>
+                    <td>@restaurant.Name</td>
+                    <td>@restaurant.Number</td>
+                    <td>@restaurant.Address</td>
+                    <td>@restaurant.PriceRange</td>
+                </tr>
             }
         </tbody>
     </table>
@@ -56,6 +57,16 @@ else
             await _client.DeleteAsync($"{Endpoints.RestaurantsEndpoint}/{restaurantId}");
             await OnInitializedAsync();
         }
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#restaurantsTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#restaurantsTable");
     }
 
 }

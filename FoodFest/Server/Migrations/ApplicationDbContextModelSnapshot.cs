@@ -109,12 +109,7 @@ namespace FoodFest.Server.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RestaurantID")
-                        .HasColumnType("int");
-
                     b.HasKey("ID");
-
-                    b.HasIndex("RestaurantID");
 
                     b.ToTable("Cuisines");
 
@@ -252,35 +247,35 @@ namespace FoodFest.Server.Migrations
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "1",
-                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 273, DateTimeKind.Local).AddTicks(6195)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 471, DateTimeKind.Local).AddTicks(4566)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "2",
-                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3813)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(679)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "3",
-                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3826)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(718)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "4",
-                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3828)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(721)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "5",
-                            ReserveDateTime = new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3829)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(722)
                         });
                 });
 
@@ -300,9 +295,38 @@ namespace FoodFest.Server.Migrations
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PriceRange")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID");
 
                     b.ToTable("Restaurants");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Address = "1 Farrer Park Station Rd, #01-14/15/16 One Farrer Hotel Connexion, Singapore 217562",
+                            Name = "JiaHe Chinese Restaurant",
+                            Number = "6694 8988",
+                            PriceRange = "$$$"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Address = "23 Serangoon Central, #B1-34/35 NEX, Singapore 556083",
+                            Name = "Seoul Garden Nex",
+                            Number = "6555 1339",
+                            PriceRange = "$$$$"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Address = "90 Hougang Avenue 10 #02-23, Hougang Mall, 538766",
+                            Name = "Ichiban Sushi (Hougang Mall)",
+                            Number = "6386 7836",
+                            PriceRange = "$$$$"
+                        });
                 });
 
             modelBuilder.Entity("FoodFest.Shared.Domain.Review", b =>
@@ -643,15 +667,6 @@ namespace FoodFest.Server.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("FoodFest.Shared.Domain.Cuisine", b =>
-                {
-                    b.HasOne("FoodFest.Shared.Domain.Restaurant", "Restaurant")
-                        .WithMany()
-                        .HasForeignKey("RestaurantID");
-
-                    b.Navigation("Restaurant");
                 });
 
             modelBuilder.Entity("FoodFest.Shared.Domain.FivePeopleReservation", b =>

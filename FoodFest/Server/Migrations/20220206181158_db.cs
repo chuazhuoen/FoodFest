@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodFest.Server.Migrations
 {
-    public partial class newdb : Migration
+    public partial class db : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,22 @@ namespace FoodFest.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cuisines",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Appetiser = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MainCourse = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Dessert = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cuisines", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -110,7 +126,8 @@ namespace FoodFest.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PriceRange = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -221,29 +238,6 @@ namespace FoodFest.Server.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Cuisines",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Appetiser = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MainCourse = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Dessert = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RestaurantID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cuisines", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Cuisines_Restaurants_RestaurantID",
-                        column: x => x.RestaurantID,
-                        principalTable: "Restaurants",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -397,13 +391,13 @@ namespace FoodFest.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Cuisines",
-                columns: new[] { "ID", "Appetiser", "Dessert", "MainCourse", "Name", "RestaurantID" },
+                columns: new[] { "ID", "Appetiser", "Dessert", "MainCourse", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Peanuts", "Watermelon", "Fried Rice", "Chinese", null },
-                    { 2, "Tteokbokki", "Bingsu", "Kimchi Fried Rice", "Korean", null },
-                    { 3, "Sushi", "Mochi", "Japanese Curry Udon", "Japanese", null },
-                    { 4, "Shepherd's Pie", "Sundae", "Fish and Chips", "Western", null }
+                    { 1, "Peanuts", "Watermelon", "Fried Rice", "Chinese" },
+                    { 2, "Tteokbokki", "Bingsu", "Kimchi Fried Rice", "Korean" },
+                    { 3, "Sushi", "Mochi", "Japanese Curry Udon", "Japanese" },
+                    { 4, "Shepherd's Pie", "Sundae", "Fish and Chips", "Western" }
                 });
 
             migrationBuilder.InsertData(
@@ -411,11 +405,21 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 5, 1, 47, 11, 273, DateTimeKind.Local).AddTicks(6195), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3813), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3826), null },
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3828), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 5, 1, 47, 11, 274, DateTimeKind.Local).AddTicks(3829), null }
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(721), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(718), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(722), null },
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 7, 2, 11, 57, 471, DateTimeKind.Local).AddTicks(4566), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(679), null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Restaurants",
+                columns: new[] { "ID", "Address", "Name", "Number", "PriceRange" },
+                values: new object[,]
+                {
+                    { 1, "1 Farrer Park Station Rd, #01-14/15/16 One Farrer Hotel Connexion, Singapore 217562", "JiaHe Chinese Restaurant", "6694 8988", "$$$" },
+                    { 2, "23 Serangoon Central, #B1-34/35 NEX, Singapore 556083", "Seoul Garden Nex", "6555 1339", "$$$$" },
+                    { 3, "90 Hougang Avenue 10 #02-23, Hougang Mall, 538766", "Ichiban Sushi (Hougang Mall)", "6386 7836", "$$$$" }
                 });
 
             migrationBuilder.InsertData(
@@ -423,10 +427,10 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestaurantID" },
                 values: new object[,]
                 {
+                    { 4, null, "Food and customer service is not very good. ", "2", null },
                     { 1, null, "Excellent food, excellent customer service!", "5", null },
                     { 2, null, "Good food, good customer service!", "4", null },
                     { 3, null, "Not bad! Can improve!", "3", null },
-                    { 4, null, "Food and customer service is not very good. ", "2", null },
                     { 5, null, "Never coming back again!!!!", "1", null }
                 });
 
@@ -468,11 +472,6 @@ namespace FoodFest.Server.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Cuisines_RestaurantID",
-                table: "Cuisines",
-                column: "RestaurantID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_DeviceCodes_DeviceCode",

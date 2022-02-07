@@ -6,7 +6,7 @@
 <h3 class="card-title">Food Reviews</h3>
 <br />
 
-<a href="/review/create" class="btn btn-secondary">
+<a href="/reviews/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
     Create New Review
 </a>
@@ -22,6 +22,7 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Restaurant</th>
                 <th>Ratings</th>
                 <th>Description</th>
                 <th>Actions</th>
@@ -31,13 +32,14 @@ else
             @foreach (var review in Reviews)
             {
                 <tr>
+
                     <td>@review.Ratings</td>
                     <td>@review.Description</td>
                     <td>
                         <a href="/reviews/view/@review.ID" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/reviews/view/@review.ID" class="btn btn-warning">
+                        <a href="/reviews/edit/@review.ID" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(review.ID))">
@@ -52,10 +54,12 @@ else
 
 @code {
     private List<Review> Reviews;
+    private List<Restaurant> Restaurants;
 
     protected async override Task OnInitializedAsync()
     {
         Reviews = await _client.GetFromJsonAsync<List<Review>>($"{Endpoints.ReviewsEndpoint}");
+        Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
     }
 
     async Task Delete(int reviewId)

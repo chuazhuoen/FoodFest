@@ -37,7 +37,7 @@ else
                         <a href="/reservations/view/@reservation.ID" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <a href="/reservations/view/@reservation.ID" class="btn btn-warning">
+                        <a href="/reservations/edit/@reservation.ID" class="btn btn-warning">
                             <span class="oi oi-pencil"></span>
                         </a>
                         <button class="btn btn-danger" @onclick="@(()=>Delete(reservation.ID))">

@@ -10,6 +10,22 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="form-group">
+        <label>Restaurant:</label>
+        <div>
+            <InputSelect @bind-Value="review.RestId" class="form-control">
+                <option value="">--Select Restaurant--</option>
+                @if (Restaurants != null)
+                 {
+                    foreach (var restaurant in Restaurants)
+                        {
+                            <option value="@restaurant.ID">@restaurant.Name</option>
+                        }
+                 }
+            </InputSelect>
+            <ValidationMessage For="@(() => review.RestId)"/>
+        </div>
+    </div>
+    <div class="form-group">
         <label>Ratings: </label>
         <div>
             <InputText @bind-Value="@review.Ratings" class="form-control" />
@@ -30,11 +46,17 @@
 
 @code {
     Review review = new Review();
+    private IList<Restaurant> Restaurants;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
+    }
 
     private async Task CreateReview()
     {
         await _client.PostAsJsonAsync(Endpoints.ReviewsEndpoint, review);
-        _navManager.NavigateTo("/review/");
+        _navManager.NavigateTo("/reviews/");
     }
 }
 

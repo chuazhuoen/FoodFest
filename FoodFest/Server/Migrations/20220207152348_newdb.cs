@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodFest.Server.Migrations
 {
-    public partial class db : Migration
+    public partial class newdb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -297,6 +297,7 @@ namespace FoodFest.Server.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Ratings = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RestId = table.Column<int>(type: "int", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -405,11 +406,11 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "DateCreated", "People", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(721), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(718), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(722), null },
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 7, 2, 11, 57, 471, DateTimeKind.Local).AddTicks(4566), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(679), null }
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9728), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9725), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9730), null },
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", new DateTime(2022, 2, 7, 23, 23, 47, 718, DateTimeKind.Local).AddTicks(4054), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9696), null }
                 });
 
             migrationBuilder.InsertData(
@@ -424,14 +425,14 @@ namespace FoodFest.Server.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestaurantID" },
+                columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestId", "RestaurantID" },
                 values: new object[,]
                 {
-                    { 4, null, "Food and customer service is not very good. ", "2", null },
-                    { 1, null, "Excellent food, excellent customer service!", "5", null },
-                    { 2, null, "Good food, good customer service!", "4", null },
-                    { 3, null, "Not bad! Can improve!", "3", null },
-                    { 5, null, "Never coming back again!!!!", "1", null }
+                    { 4, null, "Food and customer service is not very good. ", "2", 0, null },
+                    { 1, null, "Excellent food, excellent customer service!", "5", 0, null },
+                    { 2, null, "Good food, good customer service!", "4", 0, null },
+                    { 3, null, "Not bad! Can improve!", "3", 0, null },
+                    { 5, null, "Never coming back again!!!!", "1", 0, null }
                 });
 
             migrationBuilder.CreateIndex(

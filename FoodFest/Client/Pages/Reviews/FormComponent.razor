@@ -1,0 +1,29 @@
+﻿<EditForm Model="@review" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label>Ratings: </label>
+        <div>
+            <InputText @bind-Value="@review.Ratings" class="form-control" />
+            <ValidationMessage For="@(() => review.Ratings)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Descriptions: </label>
+        <div>
+            <InputText @bind-Value="@review.Description" class="form-control" />
+            <ValidationMessage For="@(() => review.Description)" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="reviews" />
+</EditForm>
+
+@code {
+    [Parameter] public Review review { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}

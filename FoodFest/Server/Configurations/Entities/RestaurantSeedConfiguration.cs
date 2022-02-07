@@ -35,6 +35,14 @@ namespace FoodFest.Server.Configurations.Entities
                     Number = "6386 7836",
                     Address = "90 Hougang Avenue 10 #02-23, Hougang Mall, 538766",
                     PriceRange = "$$$$"
+                },
+                new Restaurant
+                {
+                    ID = 4,
+                    Name = "The Ranch Cafe",
+                    Number = "6747 0788",
+                    Address = "71 / 73 Lor 27 Geylang, Singapore 388191",
+                    PriceRange = "$$"
                 });
         }
     }

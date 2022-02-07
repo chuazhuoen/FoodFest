@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodFest.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220206181158_db")]
-    partial class db
+    [Migration("20220207152348_newdb")]
+    partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -249,35 +249,35 @@ namespace FoodFest.Server.Migrations
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "1",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 471, DateTimeKind.Local).AddTicks(4566)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 718, DateTimeKind.Local).AddTicks(4054)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "2",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(679)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9696)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "3",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(718)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9725)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "4",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(721)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9728)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             People = "5",
-                            ReserveDateTime = new DateTime(2022, 2, 7, 2, 11, 57, 473, DateTimeKind.Local).AddTicks(722)
+                            ReserveDateTime = new DateTime(2022, 2, 7, 23, 23, 47, 719, DateTimeKind.Local).AddTicks(9730)
                         });
                 });
 
@@ -347,6 +347,9 @@ namespace FoodFest.Server.Migrations
                     b.Property<string>("Ratings")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RestId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("RestaurantID")
                         .HasColumnType("int");
 
@@ -363,31 +366,36 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 1,
                             Description = "Excellent food, excellent customer service!",
-                            Ratings = "5"
+                            Ratings = "5",
+                            RestId = 0
                         },
                         new
                         {
                             ID = 2,
                             Description = "Good food, good customer service!",
-                            Ratings = "4"
+                            Ratings = "4",
+                            RestId = 0
                         },
                         new
                         {
                             ID = 3,
                             Description = "Not bad! Can improve!",
-                            Ratings = "3"
+                            Ratings = "3",
+                            RestId = 0
                         },
                         new
                         {
                             ID = 4,
                             Description = "Food and customer service is not very good. ",
-                            Ratings = "2"
+                            Ratings = "2",
+                            RestId = 0
                         },
                         new
                         {
                             ID = 5,
                             Description = "Never coming back again!!!!",
-                            Ratings = "1"
+                            Ratings = "1",
+                            RestId = 0
                         });
                 });
 

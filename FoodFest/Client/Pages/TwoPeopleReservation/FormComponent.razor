@@ -1,13 +1,20 @@
 ﻿@inject HttpClient _client
 
-<EditForm Model="@review" OnValidSubmit="@OnValidSubmit">
+<EditForm Model="@twoPeopleReservation" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <fieldset disabled="@Disabled">
         <div class="form-group">
+            <label>Customer Name: </label>
+            <div>
+                <InputText @bind-Value="@twoPeopleReservation.Name" class="form-control" />
+                <ValidationMessage For="@(() => twoPeopleReservation.Name)" />
+            </div>
+        </div>
+        <div class="form-group">
             <label>Restaurant Name: </label>
             <div>
-                <InputSelect @bind-Value="@review.RestName" class="form-control">
+                <InputSelect @bind-Value="@twoPeopleReservation.RName" class="form-control">
                     <option value="">--Select Restaurant--</option>
                     @if (Restaurants != null)
                     {
@@ -17,35 +24,22 @@
                         }
                     }
                 </InputSelect>
-                <ValidationMessage For="@(()=> review.RestName)" />
+                <ValidationMessage For="@(()=> twoPeopleReservation.RName)" />
             </div>
         </div>
-        <div class="form-group">
-            <label>Ratings: </label>
-            <div>
-                <InputNumber @bind-Value="@review.Ratings" class="form-control" />
-                <ValidationMessage For="@(() => review.Ratings)" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label>Descriptions: </label>
-            <div>
-                <InputText @bind-Value="@review.Description" class="form-control" />
-                <ValidationMessage For="@(() => review.Description)" />
-            </div>
-        </div>
-        </fieldset>
-        @if (!Disabled)
-        {
-            <button type="submit" class="btn btn-success btn-block">
-                @ButtonText
-            </button>
-        }
-        <BackToList Target="reviews" />
+    </fieldset>
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+
+    <BackToList Target="twopeoplereservations" />
 </EditForm>
 
 @code {
-    [Parameter] public Review review { get; set; }
+    [Parameter] public TwoPeopleReservation twoPeopleReservation { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
     [Parameter] public bool Disabled { get; set; } = false;
@@ -57,5 +51,4 @@
         Restaurants = await _client.GetFromJsonAsync<List<Restaurant>>($"{Endpoints.RestaurantsEndpoint}");
 
     }
-
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodFest.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220207170403_newdb")]
-    partial class newdb
+    [Migration("20220208213226_db")]
+    partial class db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -181,6 +181,15 @@ namespace FoodFest.Server.Migrations
                     b.Property<int?>("FivePeopleTableID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("RName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");
 
@@ -226,11 +235,11 @@ namespace FoodFest.Server.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("People")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("People")
+                        .HasColumnType("int");
 
                     b.Property<string>("RName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("ReserveDateTime")
@@ -252,41 +261,41 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 1,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = "1",
+                            People = 1,
                             RName = "esther",
-                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 582, DateTimeKind.Local).AddTicks(8011)
+                            ReserveDateTime = new DateTime(2022, 2, 9, 5, 32, 26, 351, DateTimeKind.Local).AddTicks(6818)
                         },
                         new
                         {
                             ID = 2,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = "2",
+                            People = 2,
                             RName = "esther",
-                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(525)
+                            ReserveDateTime = new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8317)
                         },
                         new
                         {
                             ID = 3,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = "3",
+                            People = 3,
                             RName = "esther",
-                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(547)
+                            ReserveDateTime = new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8342)
                         },
                         new
                         {
                             ID = 4,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = "4",
+                            People = 4,
                             RName = "esther",
-                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(550)
+                            ReserveDateTime = new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8344)
                         },
                         new
                         {
                             ID = 5,
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            People = "5",
+                            People = 5,
                             RName = "esther",
-                            ReserveDateTime = new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(552)
+                            ReserveDateTime = new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8346)
                         });
                 });
 
@@ -363,15 +372,14 @@ namespace FoodFest.Server.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<string>("Ratings")
-                        .IsRequired()
-                        .HasMaxLength(2)
-                        .HasColumnType("nvarchar(2)");
+                    b.Property<int>("Ratings")
+                        .HasColumnType("int");
 
                     b.Property<int>("RestId")
                         .HasColumnType("int");
 
                     b.Property<string>("RestName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RestaurantID")
@@ -390,7 +398,7 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 1,
                             Description = "Excellent food, excellent customer service!",
-                            Ratings = "5",
+                            Ratings = 5,
                             RestId = 0,
                             RestName = "esther"
                         },
@@ -398,7 +406,7 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 2,
                             Description = "Good food, good customer service!",
-                            Ratings = "4",
+                            Ratings = 4,
                             RestId = 0,
                             RestName = "esther"
                         },
@@ -406,7 +414,7 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 3,
                             Description = "Not bad! Can improve!",
-                            Ratings = "3",
+                            Ratings = 3,
                             RestId = 0,
                             RestName = "esther"
                         },
@@ -414,7 +422,7 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 4,
                             Description = "Food and customer service is not very good. ",
-                            Ratings = "2",
+                            Ratings = 2,
                             RestId = 0,
                             RestName = "esther"
                         },
@@ -422,7 +430,7 @@ namespace FoodFest.Server.Migrations
                         {
                             ID = 5,
                             Description = "Never coming back again!!!!",
-                            Ratings = "1",
+                            Ratings = 1,
                             RestId = 0,
                             RestName = "esther"
                         });
@@ -434,6 +442,15 @@ namespace FoodFest.Server.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("RName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ReservationID")
                         .HasColumnType("int");

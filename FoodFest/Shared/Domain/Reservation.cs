@@ -12,7 +12,8 @@ namespace FoodFest.Shared.Domain
     {
         public int ID { get; set; }
         [Required]
-        public string People { get; set; }
+        [Range (1,5)]
+        public int People { get; set; }
         public DateTime DateCreated { get; set; }
         [Required]
         public DateTime ReserveDateTime { get; set; }

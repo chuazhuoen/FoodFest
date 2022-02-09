@@ -1,0 +1,14 @@
+﻿@page "/fivepeoplereservations/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3>View</h3>
+<FormComponent fivePeopleReservation="fivePeopleReservation" Disabled="true" />
+@code {
+    [Parameter] public int id { get; set; }
+    FivePeopleReservation fivePeopleReservation = new FivePeopleReservation();
+    protected async override Task OnParametersSetAsync()
+        {
+            fivePeopleReservation = await
+           _client.GetFromJsonAsync<FivePeopleReservation>($"{Endpoints.FivePeopleReservationsEndpoint}/{id}");
+        }
+}

@@ -28,35 +28,62 @@ else
                 <th>Restaurant</th>
                 <th>Number of People</th>
                 <th>Date and Time</th>
+                <th>Seating</th>
+
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var reservation in Reservations)
             {
-                <tr>
-                    <td>@reservation.RName</td>
-                    <td>@reservation.People</td>
-                    <td>@reservation.ReserveDateTime.Date.ToString("dd MMMM yyyy")</td>
+            <tr>
+                <td>@reservation.RName</td>
+                <td>@reservation.People</td>
+                <td>@reservation.ReserveDateTime.Date.ToString("dd MMMM yyyy")</td>
+                @if (reservation.People <= 2)
+                {
                     <td>
-                        <a href="/reservations/view/@reservation.ID" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
+                        <a href="/twopeoplereservations/" class="btn btn-dark">
+                            <span class="oi oi-arrow-right"></span>
                         </a>
-                        <a href="/reservations/edit/@reservation.ID" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(reservation.ID))">
-                            <span class="oi oi-delete"></span>
-                        </button>
                     </td>
-                </tr>
+                }
+                else
+                {
+                    <td>
+                        <a href="/fivepeoplereservations/" class="btn btn-dark">
+                            <span class="oi oi-arrow-right"></span>
+                        </a>
+                    </td>
+                }
+
+                <td>
+                    <a href="/reservations/view/@reservation.ID" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/reservations/edit/@reservation.ID" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(reservation.ID))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 }
 
 @code {
+
+
+
     private List<Reservation> Reservations;
+    private List<FivePeopleReservation> FivePeopleReservations;
+    private List<TwoPeopleReservation> TwoPeopleReservations;
+    private List<FivePeopleTable> FivePeopleTables;
+    private List<TwoPeopleTable> TwoPeopleTables;
+
 
     protected async override Task OnInitializedAsync()
     {

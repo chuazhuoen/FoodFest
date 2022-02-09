@@ -13,13 +13,13 @@ namespace FoodFest.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FivePeopleTablesController : ControllerBase
+    public class CuisinesController : ControllerBase
     {
         //private readonly ApplicationDbContext _context;
         private readonly IUnitOfWork _unitOfWork;
 
         //public MakesController(ApplicationDbContext context)
-        public FivePeopleTablesController(IUnitOfWork unitOfWork)
+        public CuisinesController(IUnitOfWork unitOfWork)
         {
             //_context = context;
             _unitOfWork = unitOfWork;

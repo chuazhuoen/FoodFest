@@ -11,8 +11,8 @@ namespace FoodFest.Shared.Domain
     {
         public int ID { get; set; }
         [Required]
-        [StringLength(2, MinimumLength = 1, ErrorMessage = "Ratings does not meet requirements")]
-        public string Ratings { get; set; }
+        [Range(1,5)]
+        public int Ratings { get; set; }
         [Required]
         [StringLength(500, MinimumLength = 2, ErrorMessage = "Description does not meet requirements")]
 

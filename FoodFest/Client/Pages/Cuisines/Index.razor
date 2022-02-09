@@ -1,0 +1,75 @@
+﻿@page "/cuisines/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+<h3 class="card-title">Cuisines</h3>
+<br />
+
+
+@if (Cuisines == null)
+{
+    <div class="alert alert-info">Loading Cuisines...</div>
+}
+else
+{
+    <table class="table table-responsive" id="cuisinesTable">
+        <thead> 
+            <tr>
+                <th>Cuisine</th>
+                <th>Appetiser</th>
+                <th>Main Course</th>
+                <th>Dessert</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cuisine in Cuisines)
+            {
+                <tr>
+                    <td>@cuisine.Name</td>
+                    <td>@cuisine.Appetiser</td>
+                    <td>@cuisine.MainCourse</td>
+                    <td>@cuisine.Dessert</td>
+                    <td>
+                        <a href="/cuisines/view/@cuisine.ID" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/cuisines/edit/@cuisine.ID" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(cuisine.ID))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+
+
+    private List<Cuisine> Cuisines;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        Cuisines = await _client.GetFromJsonAsync<List<Cuisine>>($"{Endpoints.CuisinesEndpoint}");
+    }
+
+    async Task Delete(int cuisineId)
+    {
+        var cuisine = Cuisines.First(q => q.ID == cuisineId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {cuisine.ID}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.CuisinesEndpoint}/{cuisineId}");
+            await OnInitializedAsync();
+        }
+    }
+
+}

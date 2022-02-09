@@ -13,5 +13,8 @@ namespace FoodFest.Client.Static
         public static readonly string RestaurantsEndpoint = $"{Prefix}/restaurants";
         public static readonly string ReviewsEndpoint = $"{Prefix}/reviews";
         public static readonly string CuisinesEndpoint = $"{Prefix}/cuisines";
+        public static readonly string TwoPeopleReservationsEndpoint = $"{Prefix}/twopeoplereservations";
+        public static readonly string FivePeopleReservationsEndpoint = $"{Prefix}/fivepeoplereservations";
+
     }
 }

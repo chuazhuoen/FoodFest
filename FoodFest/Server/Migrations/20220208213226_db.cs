@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodFest.Server.Migrations
 {
-    public partial class newdb : Migration
+    public partial class db : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -266,11 +266,11 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    People = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    People = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ReserveDateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: true),
-                    RName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -296,10 +296,10 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ratings = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: false),
+                    Ratings = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     RestId = table.Column<int>(type: "int", nullable: false),
-                    RestName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RestName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RestaurantID = table.Column<int>(type: "int", nullable: true),
                     CustomerID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -346,6 +346,8 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    RName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReservationID = table.Column<int>(type: "int", nullable: true),
                     FivePeopleTableID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -372,6 +374,8 @@ namespace FoodFest.Server.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    RName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReservationID = table.Column<int>(type: "int", nullable: true),
                     TwoPeopleTableID = table.Column<int>(type: "int", nullable: true)
                 },
@@ -408,11 +412,11 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "DateCreated", "People", "RName", "ReserveDateTime", "RestaurantId" },
                 values: new object[,]
                 {
-                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "4", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(550), null },
-                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "3", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(547), null },
-                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "5", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(552), null },
-                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "1", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 582, DateTimeKind.Local).AddTicks(8011), null },
-                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "2", "esther", new DateTime(2022, 2, 8, 1, 4, 2, 584, DateTimeKind.Local).AddTicks(525), null }
+                    { 4, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "esther", new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8344), null },
+                    { 3, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "esther", new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8342), null },
+                    { 5, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "esther", new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8346), null },
+                    { 1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "esther", new DateTime(2022, 2, 9, 5, 32, 26, 351, DateTimeKind.Local).AddTicks(6818), null },
+                    { 2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "esther", new DateTime(2022, 2, 9, 5, 32, 26, 352, DateTimeKind.Local).AddTicks(8317), null }
                 });
 
             migrationBuilder.InsertData(
@@ -431,11 +435,11 @@ namespace FoodFest.Server.Migrations
                 columns: new[] { "ID", "CustomerID", "Description", "Ratings", "RestId", "RestName", "RestaurantID" },
                 values: new object[,]
                 {
-                    { 4, null, "Food and customer service is not very good. ", "2", 0, "esther", null },
-                    { 1, null, "Excellent food, excellent customer service!", "5", 0, "esther", null },
-                    { 2, null, "Good food, good customer service!", "4", 0, "esther", null },
-                    { 3, null, "Not bad! Can improve!", "3", 0, "esther", null },
-                    { 5, null, "Never coming back again!!!!", "1", 0, "esther", null }
+                    { 4, null, "Food and customer service is not very good. ", 2, 0, "esther", null },
+                    { 1, null, "Excellent food, excellent customer service!", 5, 0, "esther", null },
+                    { 2, null, "Good food, good customer service!", 4, 0, "esther", null },
+                    { 3, null, "Not bad! Can improve!", 3, 0, "esther", null },
+                    { 5, null, "Never coming back again!!!!", 1, 0, "esther", null }
                 });
 
             migrationBuilder.CreateIndex(

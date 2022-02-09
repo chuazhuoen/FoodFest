@@ -1,0 +1,91 @@
+﻿@page "/twopeoplereservations/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+@implements IDisposable
+
+<h3 class="card-title">Two People Reservations</h3>
+<br />
+
+<a href="/reservations/" class="btn btn-outline-danger">
+    <span class="oi oi-arrow-left"></span>
+    Back To Food Reservations
+</a>
+<br />
+<br />
+
+<a href="/twopeoplereservations/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Reservation
+</a>
+<br />
+<br />
+
+@if (TwoPeopleReservations == null)
+{
+    <div class="alert alert-info">Loading TwoPeopleReservations...</div>
+}
+else
+{
+    <table class="table table-responsive" id="twopeoplereservationsTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Restaurant</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var twopeoplereservation in TwoPeopleReservations)
+            {
+                <tr>
+                    <td>@twopeoplereservation.Name</td>
+                    <td>@twopeoplereservation.RName</td>
+                    <td>
+                        <a href="/twopeoplereservations/view/@twopeoplereservation.ID" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/twopeoplereservations/edit/@twopeoplereservation.ID" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(twopeoplereservation.ID))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<TwoPeopleReservation> TwoPeopleReservations;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        TwoPeopleReservations = await _client.GetFromJsonAsync<List<TwoPeopleReservation>>($"{Endpoints.TwoPeopleReservationsEndpoint}");
+
+    }
+
+    async Task Delete(int twopeoplereservationId)
+    {
+        var twopeoplereservation = TwoPeopleReservations.First(q => q.ID == twopeoplereservationId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {twopeoplereservation.ID}?");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.TwoPeopleReservationsEndpoint}/{twopeoplereservationId}");
+            await OnInitializedAsync();
+        }
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#twopeoplereservationsTable");
+    }
+
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#twopeoplereservationsTable");
+    }
+}
